@@ -33,12 +33,12 @@ services:
   # ---------------------------------------------------------------------------
   # 2. HarvestIQ Responsive Web Application (Static Site)
   # ---------------------------------------------------------------------------
+    # 2. HarvestIQ Responsive Web Application (Static Site)
   - type: web
     name: harvestiq-frontend
     runtime: static
     rootDir: frontend
     staticPublishPath: .
-    plan: free
     autoDeploy: true
     headers:
       - path: /*
@@ -46,7 +46,7 @@ services:
         value: "*"
       - path: /*
         name: Cache-Control
-        value: public, max-age=0, must-revalidate
+        value: "public, max-age=0, must-revalidate"
     routes:
       - type: rewrite
         source: /*
