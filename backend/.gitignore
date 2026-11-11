@@ -1,0 +1,43 @@
+# =============================================================================
+# HarvestIQ Backend Git Ignore Configuration
+# =============================================================================
+
+# Python Byte-Compiled Cache Files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment Variables & Secrets (Keep templates)
+.env
+.env.*
+!.env.example
+
+# Test Caches & Code Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Logs & Temporary Files
+logs/
+*.log
+*.tmp
+*.bak
+
+# Legacy Node Build & Modules (if present)
+node_modules/
+dist/
+
+# Machine Learning Artifacts Preservation
+!models/*.joblib
+!data/*.csv
+!data/processed/*.csv
+!reports/*.csv
+!reports/*.json
+!reports/*.png

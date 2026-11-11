@@ -1,0 +1,96 @@
+# =============================================================================
+# HarvestIQ – Git Ignore Configuration
+# =============================================================================
+
+# Python Byte-Compiled Cache Files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Python Packaging & Distribution
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Python Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment Variables & Secrets (Keep templates)
+.env
+.env.*
+*.env
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+
+# Test Caches & Code Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.hypothesis/
+.nox/
+.tox/
+
+# Application Logs & Diagnostics
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node Dependencies & Build Output
+node_modules/
+dist/
+dist-ssr/
+
+# IDE & OS Files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.tmp
+*.bak
+tmp/
+temp/
+
+# =============================================================================
+# Machine Learning Artifacts Preservation Rules
+# Ensure trained model pipeline, evaluation artifacts, and clean datasets
+# are tracked and committed for public cloud deployment.
+# =============================================================================
+!backend/models/*.joblib
+!backend/data/Crop_recommendation.csv
+!backend/data/processed/Crop_recommendation_cleaned.csv
+!backend/reports/*.csv
+!backend/reports/*.json
+!backend/reports/*.png

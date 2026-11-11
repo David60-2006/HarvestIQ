@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HarvestIQ – Intelligent Crop Recommendation System</title>
+  <meta name="description" content="AI-driven precision agriculture system recommending optimal crops based on soil nutrients and climatic parameters." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+      <div class="brand-container">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 20h10" />
+            <path d="M10 20c0-4 1.5-6.5 4-8.5" />
+            <path d="M14 20c0-6 2-10 6-12" />
+            <path d="M4 14c2-2 5-3 8-3" />
+            <path d="M3 20c0-7 4-13 13-16" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>Harvest<span>IQ</span></h1>
+          <p>Precision Agriculture Intelligence</p>
+        </div>
+      </div>
+
+      <div class="nav-status">
+        <div class="status-pill" id="status-pill">
+          <span class="status-dot"></span>
+          <span id="status-text">Backend: Connecting...</span>
+        </div>
+        <a href="http://127.0.0.1:8000/docs" target="_blank" class="docs-link" id="docs-link" title="Open FastAPI Interactive OpenAPI Docs">
+          API Docs
+        </a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <span class="hero-tag">Machine Learning Crop Advisory</span>
+      <h2 class="hero-title">Precision Crop Recommendation Engine</h2>
+      <p class="hero-subtitle">
+        Enter 7 agro-climatic soil and meteorological indicators to compute optimal crop viability,
+        maximize harvest yields, and minimize resource wastage.
+      </p>
+    </section>
+
+    <!-- Main Two-Column Application Layout -->
+    <main class="app-grid">
+      <!-- Left Column: Input Console -->
+      <section class="card" aria-labelledby="console-heading">
+        <div class="card-header">
+          <h3 class="card-title" id="console-heading">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M3 9h18M9 21V9" />
+            </svg>
+            Agro-Climatic Input Console
+          </h3>
+          <p class="card-subtitle">Calibrate parameters within verified physiological boundaries</p>
+        </div>
+
+        <!-- Quick Presets -->
+        <div class="presets-section">
+          <span class="presets-label">Quick Climate Profiles:</span>
+          <div class="preset-buttons" id="presets-container">
+            <!-- Dynamically populated from config.js -->
+          </div>
+        </div>
+
+        <!-- Input Form -->
+        <form id="crop-form" novalidate>
+          <!-- Soil Nutrients Fieldset -->
+          <fieldset class="fieldset-container">
+            <legend class="legend-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="m4.93 4.93 4.24 4.24M14.83 14.83l4.24 4.24M14.83 9.17l4.24-4.24M4.93 19.07l4.24-4.24" />
+              </svg>
+              Soil Macro-Nutrients (NPK)
+            </legend>
+
+            <div class="param-grid">
+              <!-- Nitrogen -->
+              <div class="param-group">
+                <div class="param-header">
+                  <label for="input-nitrogen" class="param-label">Nitrogen (N)</label>
+                  <span class="param-range">0 – 200 kg/ha</span>
+                </div>
+                <div class="param-input-wrapper">
+                  <input type="number" id="input-nitrogen" class="param-input" min="0" max="200" step="1" value="90" required />
+                  <span class="param-unit">kg/ha</span>
+                </div>
+                <input type="range" id="slider-nitrogen" class="param-slider" min="0" max="200" step="1" value="90" />
+              </div>
+
+              <!-- Phosphorus -->
+              <div class="param-group">
+                <div class="param-header">
+                  <label for="input-phosphorus" class="param-label">Phosphorus (P)</label>
+                  <span class="param-range">0 – 200 kg/ha</span>
+                </div>
+                <div class="param-input-wrapper">
+                  <input type="number" id="input-phosphorus" class="param-input" min="0" max="200" step="1" value="42" required />
+                  <span class="param-unit">kg/ha</span>
+                </div>
+                <input type="range" id="slider-phosphorus" class="param-slider" min="0" max="200" step="1" value="42" />
+              </div>
+
+              <!-- Potassium -->
+              <div class="param-group">
+                <div class="param-header">
+                  <label for="input-potassium" class="param-label">Potassium (K)</label>
+                  <span class="param-range">0 – 300 kg/ha</span>
+                </div>
+                <div class="param-input-wrapper">
+                  <input type="number" id="input-potassium" class="param-input" min="0" max="300" step="1" value="43" required />
+                  <span class="param-unit">kg/ha</span>
+                </div>
+                <input type="range" id="slider-potassium" class="param-slider" min="0" max="300" step="1" value="43" />
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Meteorological & Soil Dynamics Fieldset -->
+          <fieldset class="fieldset-container">
+            <legend class="legend-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+              </svg>
+              Meteorological & Soil Factors
+            </legend>
+
+            <div class="param-grid">
+              <!-- Temperature -->
+              <div class="param-group">
+                <div class="param-header">
+                  <label for="input-temperature" class="param-label">Temperature</label>
+                  <span class="param-range">0 – 50 °C</span>
+                </div>
+                <div class="param-input-wrapper">
+                  <input type="number" id="input-temperature" class="param-input" min="0" max="50" step="0.1" value="20.8" required />
+                  <span class="param-unit">°C</span>
+                </div>
+                <input type="range" id="slider-temperature" class="param-slider" min="0" max="50" step="0.1" value="20.8" />
+              </div>
+
+              <!-- Humidity -->
+              <div class="param-group">
+                <div class="param-header">
+                  <label for="input-humidity" class="param-label">Relative Humidity</label>
+                  <span class="param-range">0 – 100 %</span>
+                </div>
+                <div class="param-input-wrapper">
+                  <input type="number" id="input-humidity" class="param-input" min="0" max="100" step="0.5" value="82.0" required />
+                  <span class="param-unit">%</span>
+                </div>
+                <input type="range" id="slider-humidity" class="param-slider" min="0" max="100" step="0.5" value="82.0" />
+              </div>
+
+              <!-- Soil pH -->
+              <div class="param-group">
+                <div class="param-header">
+                  <label for="input-ph" class="param-label">Soil pH</label>
+                  <span class="param-range">3.0 – 10.0</span>
+                </div>
+                <div class="param-input-wrapper">
+                  <input type="number" id="input-ph" class="param-input" min="3" max="10" step="0.1" value="6.5" required />
+                  <span class="param-unit">pH</span>
+                </div>
+                <input type="range" id="slider-ph" class="param-slider" min="3" max="10" step="0.1" value="6.5" />
+              </div>
+
+              <!-- Rainfall -->
+              <div class="param-group">
+                <div class="param-header">
+                  <label for="input-rainfall" class="param-label">Precipitation</label>
+                  <span class="param-range">0 – 400 mm</span>
+                </div>
+                <div class="param-input-wrapper">
+                  <input type="number" id="input-rainfall" class="param-input" min="0" max="400" step="0.5" value="202.9" required />
+                  <span class="param-unit">mm</span>
+                </div>
+                <input type="range" id="slider-rainfall" class="param-slider" min="0" max="400" step="0.5" value="202.9" />
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Form Action Buttons -->
+          <div class="form-actions">
+            <button type="submit" id="submit-btn" class="btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              </svg>
+              Generate Crop Recommendation
+            </button>
+            <button type="button" id="reset-btn" class="btn-secondary">
+              Reset
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Right Column: Results & Diagnostics -->
+      <section class="card results-card" aria-labelledby="results-heading">
+        <div class="card-header">
+          <h3 class="card-title" id="results-heading">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            Recommendation Output
+          </h3>
+          <p class="card-subtitle">Real-time inference and model status diagnostics</p>
+        </div>
+
+        <!-- Backend Notice Banner -->
+        <div id="backend-notice" class="alert-box alert-info" style="display: none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="16" x2="12" y2="12" />
+            <line x1="12" y1="8" x2="12.01" y2="8" />
+          </svg>
+          <div>
+            <h4>System Notice</h4>
+            <p id="backend-notice-text">Connecting to HarvestIQ backend...</p>
+          </div>
+        </div>
+
+        <!-- Validation Error Alert (HTTP 422) -->
+        <div id="error-container" class="alert-box alert-error" style="display: none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          <div>
+            <h4>Input Parameter Validation Error (HTTP 422)</h4>
+            <ul id="error-list"></ul>
+          </div>
+        </div>
+
+        <!-- Recommendation Output View -->
+        <div id="result-container" class="recommendation-result">
+          <div class="result-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M12 8v4M12 16h.01"/>
+            </svg>
+            <p>Awaiting agro-climatic parameters.<br>Adjust the soil nutrients and climate factors on the left and click <strong>Generate Crop Recommendation</strong>.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

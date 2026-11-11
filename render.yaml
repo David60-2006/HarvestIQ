@@ -1,0 +1,55 @@
+# =============================================================================
+# HarvestIQ – Render Deployment Blueprint (render.yaml)
+# =============================================================================
+# Infrastructure as Code (IaC) configuration for deploying both the
+# FastAPI Machine Learning backend web service and the static frontend on Render.
+#
+# Documentation: https://render.com/docs/blueprint-spec
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # 1. FastAPI Machine Learning Prediction API (Web Service)
+  # ---------------------------------------------------------------------------
+  - type: web
+    name: harvestiq-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    region: oregon
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: HOST
+        value: 0.0.0.0
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: ENVIRONMENT
+        value: production
+
+  # ---------------------------------------------------------------------------
+  # 2. HarvestIQ Responsive Web Application (Static Site)
+  # ---------------------------------------------------------------------------
+  - type: web
+    name: harvestiq-frontend
+    runtime: static
+    rootDir: frontend
+    staticPublishPath: .
+    plan: free
+    region: oregon
+    autoDeploy: true
+    headers:
+      - path: /*
+        name: Access-Control-Allow-Origin
+        value: "*"
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

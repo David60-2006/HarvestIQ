@@ -1,0 +1,6 @@
+Algorithm,CV_Accuracy_Mean,CV_Accuracy_Std,CV_Macro_F1_Mean,CV_Macro_F1_Std,Test_Accuracy,Test_Precision_Macro,Test_Recall_Macro,Test_F1_Macro,Test_Top3_Accuracy
+DummyClassifier,0.0455,0.0,0.004,0.0,0.0455,0.0021,0.0455,0.004,0.1364
+LogisticRegression,0.9682,0.0066,0.9678,0.0068,0.9727,0.974,0.9727,0.9725,1.0
+KNeighborsClassifier,0.9653,0.0121,0.965,0.0124,0.9795,0.9804,0.9795,0.9793,0.9977
+RandomForestClassifier,0.9926,0.0058,0.9926,0.0059,0.9955,0.9957,0.9955,0.9955,1.0
+GradientBoostingClassifier,0.9869,0.0034,0.9869,0.0036,0.9886,0.9897,0.9886,0.9887,0.9977
